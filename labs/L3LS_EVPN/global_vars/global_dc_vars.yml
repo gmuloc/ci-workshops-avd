@@ -106,3 +106,7 @@ l3_edge:
       profile: S1_to_S2_profile
 
 
+banners:
+  motd: |
+    You shall not pass. Unless you are authorized. Then you shall pass.
+    EOF
