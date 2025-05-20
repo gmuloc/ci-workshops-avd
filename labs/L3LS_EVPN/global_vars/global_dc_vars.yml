@@ -108,7 +108,7 @@ l3_edge:
 
 banners:
   motd: |
-    You shall not pass. Unless you are authorized. Then you shall pass. Beep Boop.
+    You shall not pass. Unless you are authorized. Then you shall pass. Beep Boop Baap.
     EOF
 
 # Syslog
