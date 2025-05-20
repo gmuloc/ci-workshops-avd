@@ -52,6 +52,7 @@ jobs:
         working-directory: labs/L3LS_EVPN/
         if: steps.filter-site1.outputs.workflows == 'true'
 
+# comment to trigger
       - name: Test configuration for site2
         run: make build-site-2
         working-directory: labs/L3LS_EVPN/
