@@ -66,3 +66,15 @@ jobs:
         run: make validate-site-2
         working-directory: labs/L3LS_EVPN/
         if: steps.filter-site2.outputs.workflows == 'true'
+
+      - name: Archive site1 test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: site1-report
+          path: labs/L3LS_EVPN/sites/site_1/anta/reports/anta_report.md
+
+      - name: Archive site2 test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: site2-report
+          path: labs/L3LS_EVPN/sites/site_2/anta/reports/anta_report.md
