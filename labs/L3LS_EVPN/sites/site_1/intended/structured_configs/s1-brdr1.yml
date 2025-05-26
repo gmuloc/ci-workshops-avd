@@ -252,6 +252,20 @@ router_bgp:
         route_target: 10020:10020
     redistribute_routes:
     - learned
+  - id: 25
+    tenant: S1_FABRIC
+    rd: 10.250.1.7:10025
+    rd_evpn_domain:
+      domain: remote
+      rd: 10.250.1.7:10025
+    route_targets:
+      both:
+      - 10025:10025
+      import_export_evpn_domains:
+      - domain: remote
+        route_target: 10025:10025
+    redistribute_routes:
+    - learned
   address_family_evpn:
     neighbor_default:
       next_hop_self_received_evpn_routes:
@@ -330,6 +344,14 @@ vlan_interfaces:
   vrf: OVERLAY
   ip_address_virtual: 10.20.20.1/24
   tenant: S1_FABRIC
+- name: Vlan25
+  description: Twenty-five
+  shutdown: false
+  vrf: OVERLAY
+  ip_address_virtual: 10.25.25.1/24
+  tenant: S1_FABRIC
+  tags:
+  - Wifi
 - name: Vlan3009
   description: MLAG_L3_VRF_OVERLAY
   shutdown: false
@@ -360,6 +382,9 @@ vlans:
 - id: 20
   name: Twenty
   tenant: S1_FABRIC
+- id: 25
+  name: Twenty-five
+  tenant: S1_FABRIC
 - id: 3009
   name: MLAG_L3_VRF_OVERLAY
   trunk_groups:
@@ -383,6 +408,8 @@ vxlan_interface:
         vni: 10010
       - id: 20
         vni: 10020
+      - id: 25
+        vni: 10025
       vrfs:
       - name: OVERLAY
         vni: 10
