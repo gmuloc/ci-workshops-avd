@@ -14,3 +14,8 @@ tenants:
             name: 'Twenty'
             enabled: true
             ip_address_virtual: 10.20.20.1/24
+          - id: 25
+            name: 'Twenty-five'
+            tags: [ "Wifi" ]
+            enabled: true
+            ip_address_virtual: 10.25.25.1/24
