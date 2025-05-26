@@ -240,6 +240,14 @@ router_bgp:
       - 10025:10025
     redistribute_routes:
     - learned
+  - id: 35
+    tenant: S1_FABRIC
+    rd: 10.250.1.5:10035
+    route_targets:
+      both:
+      - 10035:10035
+    redistribute_routes:
+    - learned
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -317,6 +325,12 @@ vlan_interfaces:
   tenant: S1_FABRIC
   tags:
   - Wifi
+- name: Vlan35
+  description: Thirty-five
+  shutdown: false
+  vrf: OVERLAY
+  ip_address_virtual: 10.35.35.1/24
+  tenant: S1_FABRIC
 - name: Vlan3009
   description: MLAG_L3_VRF_OVERLAY
   shutdown: false
@@ -350,6 +364,9 @@ vlans:
 - id: 25
   name: Twenty-five
   tenant: S1_FABRIC
+- id: 35
+  name: Thirty-five
+  tenant: S1_FABRIC
 - id: 3009
   name: MLAG_L3_VRF_OVERLAY
   trunk_groups:
@@ -375,6 +392,8 @@ vxlan_interface:
         vni: 10020
       - id: 25
         vni: 10025
+      - id: 35
+        vni: 10035
       vrfs:
       - name: OVERLAY
         vni: 10

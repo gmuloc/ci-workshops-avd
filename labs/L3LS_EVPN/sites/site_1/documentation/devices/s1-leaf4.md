@@ -271,6 +271,7 @@ vlan internal order ascending range 1006 1199
 | 10 | Ten | - |
 | 20 | Twenty | - |
 | 25 | Twenty-five | - |
+| 35 | Thirty-five | - |
 | 3009 | MLAG_L3_VRF_OVERLAY | MLAG |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
@@ -287,6 +288,9 @@ vlan 20
 !
 vlan 25
    name Twenty-five
+!
+vlan 35
+   name Thirty-five
 !
 vlan 3009
    name MLAG_L3_VRF_OVERLAY
@@ -432,6 +436,7 @@ interface Loopback1
 | Vlan10 | Ten | OVERLAY | - | False |
 | Vlan20 | Twenty | OVERLAY | - | False |
 | Vlan25 | Twenty-five | OVERLAY | - | False |
+| Vlan35 | Thirty-five | OVERLAY | - | False |
 | Vlan3009 | MLAG_L3_VRF_OVERLAY | OVERLAY | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -443,6 +448,7 @@ interface Loopback1
 | Vlan10 |  OVERLAY  |  -  |  10.10.10.1/24  |  -  |  -  |  -  |
 | Vlan20 |  OVERLAY  |  -  |  10.20.20.1/24  |  -  |  -  |  -  |
 | Vlan25 |  OVERLAY  |  -  |  10.25.25.1/24  |  -  |  -  |  -  |
+| Vlan35 |  OVERLAY  |  -  |  10.35.35.1/24  |  -  |  -  |  -  |
 | Vlan3009 |  OVERLAY  |  10.252.1.5/31  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  10.252.1.5/31  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.251.1.5/31  |  -  |  -  |  -  |  -  |
@@ -468,6 +474,12 @@ interface Vlan25
    no shutdown
    vrf OVERLAY
    ip address virtual 10.25.25.1/24
+!
+interface Vlan35
+   description Thirty-five
+   no shutdown
+   vrf OVERLAY
+   ip address virtual 10.35.35.1/24
 !
 interface Vlan3009
    description MLAG_L3_VRF_OVERLAY
@@ -507,6 +519,7 @@ interface Vlan4094
 | 10 | 10010 | - | - |
 | 20 | 10020 | - | - |
 | 25 | 10025 | - | - |
+| 35 | 10035 | - | - |
 
 ##### VRF to VNI and Multicast Group Mappings
 
@@ -526,6 +539,7 @@ interface Vxlan1
    vxlan vlan 10 vni 10010
    vxlan vlan 20 vni 10020
    vxlan vlan 25 vni 10025
+   vxlan vlan 35 vni 10035
    vxlan vrf OVERLAY vni 10
 ```
 
@@ -667,6 +681,7 @@ ASN Notation: asplain
 | 10 | 10.250.1.6:10010 | 10010:10010 | - | - | learned |
 | 20 | 10.250.1.6:10020 | 10020:10020 | - | - | learned |
 | 25 | 10.250.1.6:10025 | 10025:10025 | - | - | learned |
+| 35 | 10.250.1.6:10035 | 10035:10035 | - | - | learned |
 
 #### Router BGP VRFs
 
@@ -730,6 +745,11 @@ router bgp 65102
    vlan 25
       rd 10.250.1.6:10025
       route-target both 10025:10025
+      redistribute learned
+   !
+   vlan 35
+      rd 10.250.1.6:10035
+      route-target both 10035:10035
       redistribute learned
    !
    address-family evpn
